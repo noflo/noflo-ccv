@@ -1,0 +1,25 @@
+{
+  "name": "noflo-ccv",
+  "description": "CCV face detection for NoFlo",
+  "author": "Liu Liu <liuliu.me>",
+  "repo": "forresto/noflo-ccv",
+  "version": "0.1.0",
+  "keywords": [
+  ],
+  "dependencies": {
+    "noflo/noflo": "*",
+    "forresto/ccv.js": "*"
+  },
+  "scripts": [
+    "components/FindFaces.coffee",
+    "index.js"
+  ],
+  "json": [
+    "component.json"
+  ],
+  "noflo": {
+    "components": {
+      "FindFaces": "components/FindFaces.coffee"
+    }
+  }
+}
