@@ -8,7 +8,7 @@
   ],
   "dependencies": {
     "noflo/noflo": "*",
-    "forresto/ccv.js": "*"
+    "forresto/ccv-js": "*"
   },
   "scripts": [
     "components/FindFaces.coffee",
