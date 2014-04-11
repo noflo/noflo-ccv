@@ -20,7 +20,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "noflo": "~0.5.0"
+    "noflo": "~0.5.0",
+    "face-detect": "0.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -37,5 +38,10 @@
     "grunt-combine": "~0.8.3",
     "grunt-component": "~0.1.2"
   },
-  "keywords": []
+  "keywords": [],
+  "noflo": {
+    "components": {
+      "FindFaces": "components/FindFaces-node.coffee"
+    }
+  }
 }
