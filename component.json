@@ -12,6 +12,7 @@
   },
   "scripts": [
     "components/FindFaces.coffee",
+    "components/CalcBounds.coffee",
     "index.js"
   ],
   "json": [
@@ -19,7 +20,8 @@
   ],
   "noflo": {
     "components": {
-      "FindFaces": "components/FindFaces.coffee"
+      "FindFaces": "components/FindFaces.coffee",
+      "CalcBounds": "components/CalcBounds.coffee"
     }
   }
 }

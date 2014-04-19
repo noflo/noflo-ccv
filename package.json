@@ -41,7 +41,8 @@
   "keywords": [],
   "noflo": {
     "components": {
-      "FindFaces": "components/FindFaces-node.coffee"
+      "FindFaces": "components/FindFaces-node.coffee",
+      "CalcBounds": "components/CalcBounds.coffee"
     }
   }
 }
