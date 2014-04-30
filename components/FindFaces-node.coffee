@@ -1,6 +1,6 @@
 noflo = require 'noflo'
 ccv = require 'face-detect'
-Canvas = require 'canvas'
+#Canvas = require 'canvas'
 
 class FindFaces extends noflo.Component
   description: 'Finds faces from a canvas element.'

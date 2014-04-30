@@ -10,6 +10,9 @@
     "noflo/noflo": "*",
     "forresto/ccv-js": "*"
   },
+  "remotes": [
+    "https://raw.githubusercontent.com"
+  ],
   "scripts": [
     "components/FindFaces.coffee",
     "components/CalcBounds.coffee",
