@@ -31,15 +31,16 @@ module.exports = ->
           json = require 'component-json'
           builder.use json()
 
-    # Fix broken Component aliases, as mentioned in
-    # https://github.com/anthonyshort/component-coffee/issues/3
     combine:
       browser:
         input: 'browser/noflo-ccv.js'
         output: 'browser/noflo-ccv.js'
         tokens: [
-          token: '.coffee'
-          string: '.js'
+          token: '.coffee"'
+          string: '.js"'
+        ,
+          token: ".coffee'"
+          string: ".js'"
         ]
 
     # JavaScript minification for the browser
@@ -71,7 +72,10 @@ module.exports = ->
 
     # Coding standards
     coffeelint:
-      components: ['components/*.coffee']
+      components: ['Gruntfile.coffee', 'spec/*.coffee', 'components/*.coffee']
+      options:
+        'max_line_length':
+          'level': 'warn'
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-contrib-coffee'

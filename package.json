@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "noflo": "~0.5.0",
-    "face-detect": "0.0.1"
+    "face-detect": "~0.0.1",
+    "noflo-canvas": "noflo/noflo-canvas"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
