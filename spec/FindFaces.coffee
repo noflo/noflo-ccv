@@ -58,8 +58,14 @@ describe 'FindFaces component', ->
       chai.expect(canvas.width).to.equal 1439
       chai.expect(canvas.height).to.equal 960
 
-    it 'should send canvas and find 15 faces', ->
+    it 'should send canvas and find 15 faces', (done) ->
+      grps = []
+      out.on 'begingroup', (grp) ->
+        grps.push grp
       out.once "data", (data) ->
         chai.expect(data).to.be.an 'array'
         chai.expect(data.length).to.equal 15
+        chai.expect(grps.length).to.equal 1
+        done()
+      ins.beginGroup 'foo'
       ins.send canvas

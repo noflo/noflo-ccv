@@ -10,6 +10,8 @@ class FindFaces extends noflo.Component
     @outPorts =
       faces: new noflo.Port 'array'
 
+    @inPorts.in.on 'begingroup', (group) =>
+      @outPorts.faces.beginGroup group
     @inPorts.in.on "data", (data) =>
       result = ccv.detect_objects
         canvas: data,
@@ -17,5 +19,9 @@ class FindFaces extends noflo.Component
         interval: 5,
         min_neighbors: 1
       @outPorts.faces.send result
+    @inPorts.in.on 'endgroup', =>
+      @outPorts.faces.endGroup()
+    @inPorts.in.on 'disconnect', =>
+      @outPorts.faces.disconnect()
 
 exports.getComponent = -> new FindFaces
