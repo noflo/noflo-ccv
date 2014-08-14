@@ -1,6 +1,5 @@
 noflo = require 'noflo'
 ccv = require 'face-detect'
-#Canvas = require 'canvas'
 
 class FindFaces extends noflo.Component
   description: 'Finds faces from a canvas element.'
@@ -8,7 +7,6 @@ class FindFaces extends noflo.Component
   constructor: ->
     @inPorts =
       in: new noflo.Port 'object'
-      #url: new noflo.Port 'string' #TODO
     @outPorts =
       faces: new noflo.Port 'array'
 
@@ -19,6 +17,7 @@ class FindFaces extends noflo.Component
         canvas: data,
         interval: 5,
         min_neighbors: 1
+      result.sort (a,b) -> return b.confidence-a.confidence
       @outPorts.faces.send result
     @inPorts.in.on 'endgroup', =>
       @outPorts.faces.endGroup()

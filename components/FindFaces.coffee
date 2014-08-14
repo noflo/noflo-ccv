@@ -18,6 +18,7 @@ class FindFaces extends noflo.Component
         cascade: 'face',
         interval: 5,
         min_neighbors: 1
+      result.sort (a,b) -> return b.confidence-a.confidence
       @outPorts.faces.send result
     @inPorts.in.on 'endgroup', =>
       @outPorts.faces.endGroup()

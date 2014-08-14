@@ -58,14 +58,27 @@ describe 'FindFaces component', ->
       chai.expect(canvas.width).to.equal 1439
       chai.expect(canvas.height).to.equal 960
 
-    it 'should send canvas and find 15 faces', (done) ->
+    describe 'when canvas sent', ->
       grps = []
-      out.on 'begingroup', (grp) ->
-        grps.push grp
-      out.once "data", (data) ->
-        chai.expect(data).to.be.an 'array'
-        chai.expect(data.length).to.equal 15
+      results = null
+
+      before (done) ->
+        grps = []
+        out.on 'begingroup', (grp) ->
+          grps.push grp
+        out.once "data", (data) ->
+          results = data
+          done()
+        ins.beginGroup 'foo'
+        ins.send canvas
+
+      it 'should find 15 faces', ->
+        chai.expect(results).to.be.an 'array'
+        chai.expect(results.length).to.equal 15
         chai.expect(grps.length).to.equal 1
-        done()
-      ins.beginGroup 'foo'
-      ins.send canvas
+
+      it 'should sort faces by confidence', ->
+        chai.expect(results[0].confidence).to.be.at.least results[1].confidence
+        chai.expect(results[1].confidence).to.be.at.least results[2].confidence
+        chai.expect(results[2].confidence).to.be.at.least results[3].confidence
+        chai.expect(results[3].confidence).to.be.at.least results[4].confidence
