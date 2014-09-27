@@ -1,6 +1,8 @@
 noflo = require 'noflo'
 ccv = require 'ccv'
 
+# @runtime noflo-browser
+
 class FindFaces extends noflo.Component
   description: 'Finds faces from a canvas or img element.'
   icon: 'smile-o'

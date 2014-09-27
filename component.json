@@ -4,8 +4,7 @@
   "author": "Liu Liu <liuliu.me>",
   "repo": "forresto/noflo-ccv",
   "version": "0.1.2",
-  "keywords": [
-  ],
+  "keywords": [],
   "dependencies": {
     "noflo/noflo": "*",
     "forresto/ccv-js": "*"
@@ -23,8 +22,8 @@
   ],
   "noflo": {
     "components": {
-      "FindFaces": "components/FindFaces.coffee",
-      "CalcBounds": "components/CalcBounds.coffee"
+      "CalcBounds": "components/CalcBounds.coffee",
+      "FindFaces": "components/FindFaces.coffee"
     }
   }
 }

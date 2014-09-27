@@ -1,6 +1,9 @@
 noflo = require 'noflo'
 ccv = require 'face-detect'
 
+# @runtime noflo-nodejs
+# @name FindFaces
+
 class FindFaces extends noflo.Component
   description: 'Finds faces from a canvas element.'
   icon: 'smile-o'
