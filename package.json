@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "noflo": "~0.5.0",
-    "face-detect": "~0.0.1",
+    "face-detect": "automata/ccv-purejs",
     "canvas": "~1.1.1"
   },
   "devDependencies": {
