@@ -27,7 +27,7 @@ describe 'FindFaces component', ->
       chai.expect(c.outPorts.faces).to.be.an 'object'
 
   describe 'when image loaded', ->
-    @timeout 5000
+    @timeout 10000
     canvas = null
     img = null
     beforeEach (done) ->
