@@ -21,7 +21,7 @@ class FindFaces extends noflo.Component
         interval: 5,
         min_neighbors: 1
       result.sort (a,b) -> return b.confidence-a.confidence
-      result.map (face) ->
+      for face in result
         face.x = Math.round face.x
         face.y = Math.round face.y
         face.width = Math.round face.width
