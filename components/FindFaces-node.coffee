@@ -21,6 +21,11 @@ class FindFaces extends noflo.Component
         interval: 5,
         min_neighbors: 1
       result.sort (a,b) -> return b.confidence-a.confidence
+      result.map (face) ->
+        face.x = Math.round face.x
+        face.y = Math.round face.y
+        face.width = Math.round face.width
+        face.height = Math.round face.height
       @outPorts.faces.send result
     @inPorts.in.on 'endgroup', =>
       @outPorts.faces.endGroup()
