@@ -59,7 +59,7 @@ describe 'FindFaces component', ->
       chai.expect(canvas.height).to.equal 960
 
     describe 'when canvas sent', ->
-      @timeout 5000
+      @timeout 10000
       grps = []
       results = null
 
