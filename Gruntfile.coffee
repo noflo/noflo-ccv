@@ -21,6 +21,11 @@ module.exports = ->
         dest: 'spec'
         ext: '.js'
 
+    # Compiles C code with node-gyp
+    gyp:
+      scddetect:
+        command: 'rebuild'
+
     # Browser build of NoFlo
     noflo_browser:
       build:
@@ -66,6 +71,7 @@ module.exports = ->
   @loadNpmTasks 'grunt-noflo-manifest'
   @loadNpmTasks 'grunt-noflo-browser'
   @loadNpmTasks 'grunt-contrib-uglify'
+  @loadNpmTasks 'grunt-node-gyp'
 
   # Grunt plugins used for testing
   @loadNpmTasks 'grunt-contrib-watch'
