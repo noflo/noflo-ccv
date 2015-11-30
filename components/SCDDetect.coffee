@@ -34,6 +34,8 @@ onEnd = (tmpFile, cascade, callback) ->
       callback err
     else
       out = JSON.parse stdout
+      if out.length > 1
+        out.sort (a,b) -> return b.confidence-a.confidence
       callback null, out
 
 exports.getComponent = ->
