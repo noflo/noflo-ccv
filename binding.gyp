@@ -10,10 +10,10 @@
         'src/scddetect.c',
       ],
       'libraries': [
-        '/home/vilson/repos/ccv/lib/libccv.a -lm -lcblas -latlas -lpng -ljpeg -lfftw3 -lfftw3f -lpthread -lavcodec -lavformat -lswscale -lgsl -lgslcblas'
+        '/usr/local/lib/libccv.a -lm -lcblas -latlas -lpng -ljpeg -lfftw3 -lfftw3f -lpthread -lavcodec -lavformat -lswscale -lgsl -lgslcblas'
       ],
       'include_dirs': [
-        '/home/vilson/repos/ccv/lib'
+        '/usr/local/lib'
       ],
       'conditions': [
         ['OS=="mac"', {
