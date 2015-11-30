@@ -42,7 +42,8 @@
   "noflo": {
     "components": {
       "CalcBounds": "components/CalcBounds.coffee",
-      "FindFaces": "components/FindFaces-node.coffee"
+      "FindFaces": "components/FindFaces-node.coffee",
+      "SCDDetect": "components/SCDDetect.coffee"
     }
   }
 }
