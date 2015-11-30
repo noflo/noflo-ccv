@@ -22,12 +22,16 @@ int main(int argc, char** argv)
 		unsigned int elapsed_time = get_current_time();
 		ccv_array_t* seq = ccv_scd_detect_objects(image, &cascade, 1, ccv_scd_default_params);
 		elapsed_time = get_current_time() - elapsed_time;
+		printf("[");
 		for (i = 0; i < seq->rnum; i++)
 		{
 			ccv_comp_t* comp = (ccv_comp_t*)ccv_array_get(seq, i);
-			printf("%d %d %d %d %f\n", comp->rect.x, comp->rect.y, comp->rect.width, comp->rect.height, comp->classification.confidence);
+			if (i == seq->rnum-1)
+				printf("{\"x\": %d, \"y\": %d, \"width\": %d, \"height\": %d, \"confidence\": %f}", comp->rect.x, comp->rect.y, comp->rect.width, comp->rect.height, comp->classification.confidence);
+			else
+				printf("{\"x\": %d, \"y\": %d, \"width\": %d, \"height\": %d, \"confidence\": %f},", comp->rect.x, comp->rect.y, comp->rect.width, comp->rect.height, comp->classification.confidence);
 		}
-		printf("total : %d in time %dms\n", seq->rnum, elapsed_time);
+		printf("]");
 		ccv_array_free(seq);
 		ccv_matrix_free(image);
 	} else {
