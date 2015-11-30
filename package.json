@@ -22,7 +22,8 @@
   "dependencies": {
     "noflo": "~0.5.20",
     "face-detect": "orls/ccv-purejs#v0.0.2",
-    "canvas": "~1.1.1"
+    "canvas": "~1.1.1",
+    "temporary": "0.0.8"
   },
   "devDependencies": {
     "chai": "3.3.0",
