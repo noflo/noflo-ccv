@@ -10,10 +10,11 @@
         'src/scddetect.c',
       ],
       'libraries': [
-        '/usr/local/lib/libccv.a -lm -lcblas -latlas -lpng -ljpeg -lfftw3 -lfftw3f -lpthread -lgsl -lgslcblas'
+        '/app/vendor/libccv/libccv.a -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas'
       ],
       'include_dirs': [
-        '/usr/local/lib'
+        '/usr/local/lib',
+        '/app/vendor/libccv'
       ],
       'conditions': [
         ['OS=="mac"', {

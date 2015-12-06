@@ -6,26 +6,38 @@
     "name": "Liu Liu",
     "email": "liuliu.me"
   },
+  "contributors": [
+    {
+      "name": "Forrest Oliphant",
+      "email": "forrest@sembiki.com",
+      "url": "http://forresto.com"
+    },
+    {
+      "name": "Vilson Vieira",
+      "email": "vilson@void.cc",
+      "url": "http://automata.cc"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/forresto/noflo-ccv.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "undefined/blob/master/LICENSE-MIT"
-    }
-  ],
+  "engines": {
+    "node": "0.12.x",
+    "npm": "2.10.x"
+  },
+  "license": "MIT",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "postinstall": "grunt test"
   },
   "dependencies": {
     "noflo": "~0.5.20",
     "face-detect": "orls/ccv-purejs#v0.0.2",
-    "canvas": "~1.1.1",
     "temporary": "0.0.8"
   },
   "devDependencies": {
+    "canvas": "^1.1.6",
     "chai": "3.3.0",
     "grunt": "^0.4.5",
     "grunt-cafe-mocha": "~0.1.2",

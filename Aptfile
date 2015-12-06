@@ -1,0 +1,13 @@
+libcairo2-dev
+libpango1.0-dev
+libpixman-1-dev
+libharfbuzz-dev
+libfreetype6-dev
+libgif-dev
+libpng12-dev
+libjpeg8-dev
+libwebp-dev
+libatlas-base-dev
+libblas-dev
+libgsl0-dev
+libfftw3-dev
