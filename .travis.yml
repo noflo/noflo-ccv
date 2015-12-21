@@ -1,7 +1,16 @@
 language: node_js
 node_js:
-  - 0.10
-before_install: 
-  - sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
+- 0.1
+before_install:
+- sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential
+  g++
 before_script:
-  - npm install -g grunt-cli
+- npm install -g grunt-cli
+deploy:
+  provider: npm
+  email: vilson@void.cc
+  api_key:
+    secure: P/wpLx5s5daDjskxi3CWHNnalAqgozJrreM/yNWtku0uQykluyIJx4ed5ji05JqXYdhTul4QxYR/c93cFJmuKW8GTC1w3qs27R1WSC6OpnW/z3AXdJ8Flu3nMTfxUzpuHO3dGabQ0rsHQ8VbJYvO7WT3Zw8cM289pJgxBSGcyz0=
+  on:
+    tags: true
+    repo: noflo/noflo-ccv
