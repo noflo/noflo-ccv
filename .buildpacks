@@ -1,6 +1,6 @@
 https://github.com/mojodna/heroku-buildpack-cairo.git
 https://github.com/automata/heroku-buildpack-opencv.git
 https://github.com/automata/heroku-buildpack-vips.git
-#https://github.com/heroku/heroku-buildpack-apt.git#usr-local-paths
-#https://github.com/automata/heroku-buildpack-ccv.git
+https://github.com/mspanc/heroku-buildpack-apt.git
+https://github.com/automata/heroku-buildpack-ccv.git
 https://github.com/heroku/heroku-buildpack-nodejs.git
