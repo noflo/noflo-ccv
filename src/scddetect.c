@@ -2,6 +2,16 @@
 #include <sys/time.h>
 #include <ctype.h>
 
+const ccv_scd_param_t ccv_scd_params = {
+	.interval = 5,
+	.min_neighbors = 1,
+	.step_through = 4,
+	.size = {
+		.width = 24,
+		.height = 24,
+	},
+};
+
 static unsigned int get_current_time(void)
 {
 	struct timeval tv;
@@ -20,7 +30,7 @@ int main(int argc, char** argv)
 	if (image != 0)
 	{
 		unsigned int elapsed_time = get_current_time();
-		ccv_array_t* seq = ccv_scd_detect_objects(image, &cascade, 1, ccv_scd_default_params);
+		ccv_array_t* seq = ccv_scd_detect_objects(image, &cascade, 1, ccv_scd_params);
 		elapsed_time = get_current_time() - elapsed_time;
 		printf("[");
 		for (i = 0; i < seq->rnum; i++)
