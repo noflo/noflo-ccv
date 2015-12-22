@@ -11,11 +11,13 @@
       ],
       'libraries': [
         '-L/app/vendor/libccv',
-        '-lccv -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas'
+        '-L/home/vilson/repos/ccv/lib',
+        '-lccv -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas -lfftw3'
       ],
       'include_dirs': [
         '/usr/local/lib',
-        '/app/vendor/libccv'
+        '/app/vendor/libccv',
+        '/home/vilson/repos/ccv/lib'
       ],
       'conditions': [
         ['OS=="mac"', {
