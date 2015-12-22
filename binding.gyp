@@ -10,7 +10,7 @@
         'src/scddetect.c',
       ],
       'libraries': [
-        '/app/vendor/libccv/libccv.a -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas'
+        '-lccv -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas'
       ],
       'include_dirs': [
         '/usr/local/lib',
