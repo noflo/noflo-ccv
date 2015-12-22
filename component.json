@@ -13,7 +13,6 @@
     "https://raw.githubusercontent.com"
   ],
   "scripts": [
-    "components/FindFaces.coffee",
     "components/CalcBounds.coffee",
     "index.js"
   ],
@@ -22,8 +21,7 @@
   ],
   "noflo": {
     "components": {
-      "CalcBounds": "components/CalcBounds.coffee",
-      "FindFaces": "components/FindFaces.coffee"
+      "CalcBounds": "components/CalcBounds.coffee"
     }
   }
 }

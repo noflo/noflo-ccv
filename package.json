@@ -32,11 +32,9 @@
   },
   "dependencies": {
     "noflo": "~0.5.20",
-    "face-detect": "orls/ccv-purejs#v0.0.2",
     "temporary": "0.0.8"
   },
   "devDependencies": {
-    "canvas": "^1.1.6",
     "chai": "3.3.0",
     "grunt": "^0.4.5",
     "grunt-cafe-mocha": "~0.1.2",
@@ -54,7 +52,6 @@
   "noflo": {
     "components": {
       "CalcBounds": "components/CalcBounds.coffee",
-      "FindFaces": "components/FindFaces-node.coffee",
       "SCDDetect": "components/SCDDetect.coffee"
     }
   }
