@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "noflo": "~0.5.20",
-    "face-detect": "orls/ccv-purejs#v0.0.2",
+    "face-detect": "~0.0.2",
     "temporary": "0.0.8"
   },
   "devDependencies": {
