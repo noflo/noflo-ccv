@@ -12,7 +12,7 @@
       'libraries': [
         '-L/app/vendor/libccv',
         '-L/home/vilson/repos/ccv/lib',
-        '-lccv -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas -lfftw3'
+        '-lccv -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas -lfftw3 -lcblas -latlas'
       ],
       'include_dirs': [
         '/usr/local/lib',
