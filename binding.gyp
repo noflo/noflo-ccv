@@ -11,7 +11,7 @@
       ],
       'libraries': [
         '-L/app/vendor/libccv',
-        '-lccv -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas -lfftw3 -lfftw3f'
+        '-lccv -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas -lfftw3f'
       ],
       'include_dirs': [
         '/usr/local/lib',
