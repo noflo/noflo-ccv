@@ -15,23 +15,34 @@ compute = (canvas, cascade, callback) ->
 
   tmpFile = new temporary.File
   out = fs.createWriteStream tmpFile.path
-  stream = canvas.pngStream()
-  stream.on 'data', (chunk) ->
-    out.write(chunk)
+  stream = canvas.createPNGStream()
+  stream.pipe out
+  stream.on 'error', (err) ->
+    console.log 'stream error', err
+    callback err
+    tmpFile.unlink()
   stream.on 'end', () ->
     try
       onEnd tmpFile, cascade, callback
-    catch e
-      callback e
+    catch err
+      console.log 'stream end error', err
+      callback err
       tmpFile.unlink()
 
 onEnd = (tmpFile, cascade, callback) ->
   bin = path.join __dirname, '../build/Release/scddetect'
-
+  console.log tmpFile.path
   exec "#{bin} #{tmpFile.path} #{cascade}", (err, stdout, stderr) ->
+    console.log 'stdout', stdout
+    console.log 'stderr', stderr
+    console.log 'err', err
     tmpFile.unlink()
+    if stderr
+      callback stderr
+      return
     if err
       callback err
+      return
     else
       out = JSON.parse stdout
       if out.length > 1
