@@ -1,0 +1,9 @@
+{
+  "name": "noflo-ccv",
+  "description": "NoFlo components for libccv",
+  "repository": "https://github.com/noflo/noflo-ccv",
+  "keywords": [ "computer vision", "face detection", "noflo" ],
+  "env": {
+    "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git"
+  }
+}
