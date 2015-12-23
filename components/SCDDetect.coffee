@@ -15,8 +15,9 @@ compute = (canvas, cascade, callback) ->
 
   tmpFile = new temporary.File
   out = fs.createWriteStream tmpFile.path
-  stream = canvas.createPNGStream()
-  stream.pipe out
+  stream = canvas.pngStream()
+  stream.on 'data', (chunk) ->
+    out.write chunk
   stream.on 'error', (err) ->
     console.log 'stream error', err
     callback err
