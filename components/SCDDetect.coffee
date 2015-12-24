@@ -17,17 +17,12 @@ compute = (canvas, cascade, callback) ->
   out = fs.createWriteStream tmpFile.path
   stream = canvas.pngStream()
   stream.on 'data', (chunk) ->
-    out.write chunk
-  stream.on 'error', (err) ->
-    console.log 'stream error', err
-    callback err
-    tmpFile.unlink()
+    out.write(chunk)
   stream.on 'end', () ->
     try
       onEnd tmpFile, cascade, callback
-    catch err
-      console.log 'stream end error', err
-      callback err
+    catch e
+      callback e
       tmpFile.unlink()
 
 onEnd = (tmpFile, cascade, callback) ->
@@ -38,9 +33,6 @@ onEnd = (tmpFile, cascade, callback) ->
     console.log 'stderr', stderr
     console.log 'err', err
     tmpFile.unlink()
-    if stderr
-      callback stderr
-      return
     if err
       callback err
       return
