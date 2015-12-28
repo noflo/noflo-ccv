@@ -20,27 +20,31 @@ compute = (canvas, cascade, callback) ->
     out.write(chunk)
   stream.on 'end', () ->
     try
-      onEnd tmpFile, cascade, callback
+      # Delay it a bit to avoid premature stream ending
+      setTimeout () ->
+        onEnd tmpFile, cascade, callback
+      , 100
     catch e
       callback e
       tmpFile.unlink()
 
 onEnd = (tmpFile, cascade, callback) ->
   bin = path.join __dirname, '../build/Release/scddetect'
-  console.log tmpFile.path
   exec "#{bin} #{tmpFile.path} #{cascade}", (err, stdout, stderr) ->
-    console.log 'stdout', stdout
-    console.log 'stderr', stderr
-    console.log 'err', err
-    tmpFile.unlink()
+    if stderr
+      callback stderr
+      tmpFile.unlink()
+      return
     if err
       callback err
+      tmpFile.unlink()
       return
     else
       out = JSON.parse stdout
       if out.length > 1
         out.sort (a,b) -> return b.confidence-a.confidence
       callback null, out
+      tmpFile.unlink()
 
 exports.getComponent = ->
   c = new noflo.Component
