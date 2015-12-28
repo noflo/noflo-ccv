@@ -17,8 +17,8 @@ int main(int argc, char** argv) {
 	int i;
 	ccv_enable_default_cache();
 	ccv_dense_matrix_t* image = 0;
-	ccv_scd_classifier_cascade_t* cascade = ccv_scd_classifier_cascade_read(argv[2]);
 	ccv_read(argv[1], &image, CCV_IO_RGB_COLOR | CCV_IO_ANY_FILE);
+	ccv_scd_classifier_cascade_t* cascade = ccv_scd_classifier_cascade_read(argv[2]);
 	if (image != 0) {
 		ccv_array_t* seq = ccv_scd_detect_objects(image, &cascade, 1, ccv_scd_params);
 		printf("[");
