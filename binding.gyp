@@ -15,6 +15,7 @@
       ],
       'include_dirs': [
         '/usr/local/lib',
+        '/home/travis/libccv',
         '/app/vendor/libccv'
       ],
       'conditions': [
