@@ -4,7 +4,10 @@ node_js:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libpng-dev libatlas-base-dev libblas-dev libgsl0-dev libfftw3-dev libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
-  - sudo ./install-libccv.sh
+  - wget https://s3-us-west-2.amazonaws.com/cdn.thegrid.io/caliper/libvips/libccv-0.1.1.tar.gz
+  - mkdir $HOME/libccv
+  - echo $HOME/libccv
+  - tar -xvzf libccv-0.1.1.tar.gz -C $HOME/libccv
 before_script:
 - npm install -g grunt-cli
 deploy:
