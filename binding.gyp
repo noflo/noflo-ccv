@@ -11,6 +11,7 @@
       ],
       'libraries': [
         '-L/app/vendor/libccv',
+        '-L/home/travis/libccv',
         '-lccv -lm -lpng -ljpeg -lpthread -lgsl -lgslcblas -lfftw3f -lfftw3'
       ],
       'include_dirs': [
