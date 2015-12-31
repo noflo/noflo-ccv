@@ -42,7 +42,7 @@ onEnd = (tmpFile, callback) ->
 
 exports.getComponent = ->
   c = new noflo.Component
-  c.icon = 'smile-o'
+  c.icon = 'font'
   c.description = 'Stroke Width Transform text detector'
 
   c.inPorts.add 'canvas',
