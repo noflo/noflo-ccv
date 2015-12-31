@@ -31,10 +31,6 @@ compute = (canvas, callback) ->
 onEnd = (tmpFile, callback) ->
   bin = path.join __dirname, '../build/Release/swtdetect'
   exec "#{bin} #{tmpFile.path}", (err, stdout, stderr) ->
-    if stderr
-      callback stderr
-      tmpFile.unlink()
-      return
     if err
       callback err
       tmpFile.unlink()
