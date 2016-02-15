@@ -31,6 +31,9 @@ compute = (canvas, cascade, callback) ->
 onEnd = (tmpFile, cascade, callback) ->
   bin = path.join __dirname, '../build/Release/scddetect'
   exec "#{bin} #{tmpFile.path} #{cascade}", (err, stdout, stderr) ->
+    console.log 'stdout', stdout
+    console.log 'stderr', stderr
+    console.log 'err', err
     if err
       callback err
       tmpFile.unlink()
