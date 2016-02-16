@@ -8,25 +8,39 @@ exec = require('child_process').exec
 # @name SCDDetect
 
 compute = (canvas, cascade, callback) ->
-  # Get canvas
   ctx = canvas.getContext '2d'
   imageData = ctx.getImageData 0, 0, canvas.width, canvas.height
   data = imageData.data
 
   tmpFile = new temporary.File
-  out = fs.createWriteStream tmpFile.path
-  stream = canvas.pngStream()
-  stream.on 'data', (chunk) ->
-    out.write(chunk)
-  stream.on 'end', () ->
-    try
-      # Delay it a bit to avoid premature stream ending
-      setTimeout () ->
-        onEnd tmpFile, cascade, callback
-      , 100
-    catch e
-      callback e
+
+  rs = canvas.pngStream()
+  ws = fs.createWriteStream tmpFile.path
+  rs.once 'error', (error) ->
+    callback error
+    tmpFile.unlink()
+    return
+  ws.once 'error', (error) ->
+    callback error
+    tmpFile.unlink()
+    return
+  ws.once 'open', (fd) ->
+    if fd < 0
+      callback new Error 'Bad file descriptor'
       tmpFile.unlink()
+      return
+    ws.once 'close', ->
+      fs.fsync fd, ->
+        if fd < 0
+          callback new Error 'Bad file descriptor'
+          tmpFile.unlink()
+          return
+        try
+          onEnd tmpFile, cascade, callback
+        catch error
+          callback error
+          tmpFile.unlink()
+  rs.pipe ws
 
 onEnd = (tmpFile, cascade, callback) ->
   bin = path.join __dirname, '../build/Release/scddetect'
