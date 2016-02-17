@@ -11,7 +11,6 @@ compute = (canvas, cascade, callback) ->
   ctx = canvas.getContext '2d'
   imageData = ctx.getImageData 0, 0, canvas.width, canvas.height
   data = imageData.data
-
   tmpFile = new temporary.File
 
   rs = canvas.pngStream()
@@ -31,10 +30,6 @@ compute = (canvas, cascade, callback) ->
       return
     ws.once 'close', ->
       fs.fsync fd, ->
-        if fd < 0
-          callback new Error 'Bad file descriptor'
-          tmpFile.unlink()
-          return
         try
           onEnd tmpFile, cascade, callback
         catch error
@@ -45,9 +40,6 @@ compute = (canvas, cascade, callback) ->
 onEnd = (tmpFile, cascade, callback) ->
   bin = path.join __dirname, '../build/Release/scddetect'
   exec "#{bin} #{tmpFile.path} #{cascade}", (err, stdout, stderr) ->
-    console.log 'stdout', stdout
-    console.log 'stderr', stderr
-    console.log 'err', err
     if err
       callback err
       tmpFile.unlink()
