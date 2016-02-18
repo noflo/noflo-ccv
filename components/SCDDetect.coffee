@@ -7,10 +7,7 @@ exec = require('child_process').exec
 # @runtime noflo-nodejs
 # @name SCDDetect
 
-compute = (canvas, cascade, callback) ->
-  ctx = canvas.getContext '2d'
-  imageData = ctx.getImageData 0, 0, canvas.width, canvas.height
-  data = imageData.data
+writeCanvasTempFile = (canvas, callback) ->
   tmpFile = new temporary.File
 
   rs = canvas.pngStream()
@@ -31,13 +28,13 @@ compute = (canvas, cascade, callback) ->
     ws.once 'close', ->
       fs.fsync fd, ->
         try
-          onEnd tmpFile, cascade, callback
+          callback null, tmpFile
         catch error
           callback error
           tmpFile.unlink()
   rs.pipe ws
 
-onEnd = (tmpFile, cascade, callback) ->
+runScdDetect = (tmpFile, cascade, callback) ->
   bin = path.join __dirname, '../build/Release/scddetect'
   exec "#{bin} #{tmpFile.path} #{cascade}", (err, stdout, stderr) ->
     if err
@@ -76,13 +73,16 @@ exports.getComponent = ->
     out: 'out'
     forwardGroups: true
     async: true
-  , (payload, groups, out, callback) ->
+  , (canvas, groups, out, callback) ->
     if not c.params.cascade
       cascade = path.join __dirname, '../cascades/face.sqlite3'
     else
       cascade = c.params.cascade
-    compute payload, cascade, (err, val) ->
+    writeCanvasTempFile canvas, (err, tmpFile) ->
       return callback err if err
-      out.send val
-      do callback
+      runScdDetect tmpFile, cascade, (err, val) ->
+        return callback err if err
+        out.send val
+        do callback
+
   c
