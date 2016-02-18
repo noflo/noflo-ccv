@@ -67,7 +67,6 @@ describe 'SCDDetect component', ->
         ins.send canvas
 
       it 'should find faces', ->
-        console.log 'data', results
         chai.expect(results).to.be.an 'array'
         chai.expect(results.length).to.gte 0
         chai.expect(grps.length).to.equal 1
@@ -120,7 +119,6 @@ describe 'SCDDetect component', ->
           out.on 'begingroup', (grp) ->
             grps.push grp
           out.once "data", (data) ->
-            console.log 'data', data
             results = data
             done()
           ins.beginGroup 'foo'
@@ -139,7 +137,6 @@ describe 'SCDDetect component', ->
         grps.push grp
       out.once "data", (data) ->
         results = data
-        console.log 'data', data
         chai.expect(results).to.be.an 'array'
         chai.expect(results.length).to.gte 0
         chai.expect(grps.length).to.equal 1

@@ -7,28 +7,34 @@ exec = require('child_process').exec
 # @runtime noflo-nodejs
 # @name SCDDetect
 
-compute = (canvas, cascade, callback) ->
-  # Get canvas
-  ctx = canvas.getContext '2d'
-  imageData = ctx.getImageData 0, 0, canvas.width, canvas.height
-  data = imageData.data
-
+writeCanvasTempFile = (canvas, callback) ->
   tmpFile = new temporary.File
-  out = fs.createWriteStream tmpFile.path
-  stream = canvas.pngStream()
-  stream.on 'data', (chunk) ->
-    out.write(chunk)
-  stream.on 'end', () ->
-    try
-      # Delay it a bit to avoid premature stream ending
-      setTimeout () ->
-        onEnd tmpFile, cascade, callback
-      , 100
-    catch e
-      callback e
-      tmpFile.unlink()
 
-onEnd = (tmpFile, cascade, callback) ->
+  rs = canvas.pngStream()
+  ws = fs.createWriteStream tmpFile.path
+  rs.once 'error', (error) ->
+    callback error
+    tmpFile.unlink()
+    return
+  ws.once 'error', (error) ->
+    callback error
+    tmpFile.unlink()
+    return
+  ws.once 'open', (fd) ->
+    if fd < 0
+      callback new Error 'Bad file descriptor'
+      tmpFile.unlink()
+      return
+    ws.once 'close', ->
+      fs.fsync fd, ->
+        try
+          callback null, tmpFile
+        catch error
+          callback error
+          tmpFile.unlink()
+  rs.pipe ws
+
+runScdDetect = (tmpFile, cascade, callback) ->
   bin = path.join __dirname, '../build/Release/scddetect'
   exec "#{bin} #{tmpFile.path} #{cascade}", (err, stdout, stderr) ->
     if err
@@ -67,13 +73,16 @@ exports.getComponent = ->
     out: 'out'
     forwardGroups: true
     async: true
-  , (payload, groups, out, callback) ->
+  , (canvas, groups, out, callback) ->
     if not c.params.cascade
       cascade = path.join __dirname, '../cascades/face.sqlite3'
     else
       cascade = c.params.cascade
-    compute payload, cascade, (err, val) ->
+    writeCanvasTempFile canvas, (err, tmpFile) ->
       return callback err if err
-      out.send val
-      do callback
+      runScdDetect tmpFile, cascade, (err, val) ->
+        return callback err if err
+        out.send val
+        do callback
+
   c
