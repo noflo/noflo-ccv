@@ -40,10 +40,12 @@ describe 'SCDDetect component', ->
         if err
           return done err
         img = new Image
+        img.onerror = done
+        img.onload = () ->
+          canvas = new Canvas img.width, img.height
+          canvas.getContext('2d').drawImage(img, 0, 0)
+          done()
         img.src = image
-        canvas = new Canvas img.width, img.height
-        canvas.getContext('2d').drawImage(img, 0, 0)
-        done()
 
     it 'should have correct image and canvas size', ->
       chai.expect(img.width).to.equal 1439
@@ -99,10 +101,12 @@ describe 'SCDDetect component', ->
             if err
               return done err
             img = new Image
+            img.onerror = done
+            img.onload = () ->
+              canvas = new Canvas img.width, img.height
+              canvas.getContext('2d').drawImage(img, 0, 0)
+              done()
             img.src = image
-            canvas = new Canvas img.width, img.height
-            canvas.getContext('2d').drawImage(img, 0, 0)
-            done()
 
       it 'should have correct image and canvas size', ->
         chai.expect(img.width).to.equal 1
@@ -145,9 +149,12 @@ describe 'SCDDetect component', ->
         if err
           return done err
         img = new Image
+        img.onerror = done
+        img.onload = () ->
+          canvas = new Canvas img.width, img.height
+          canvas.getContext('2d').drawImage(img, 0, 0)
+          ins.beginGroup 'foo'
+          ins.send canvas
         img.src = image
-        canvas = new Canvas img.width, img.height
-        canvas.getContext('2d').drawImage(img, 0, 0)
 
-        ins.beginGroup 'foo'
-        ins.send canvas
+
