@@ -16,7 +16,10 @@
     <script src="../browser/noflo-ccv.js"></script>
     <script src="http://chaijs.com/chai.js"></script>
     <script src="../node_modules/mocha/mocha.js"></script>
-    <script>mocha.setup('bdd');</script>
+    <script>
+      window.initMochaPhantomJS();
+      mocha.setup('bdd');
+    </script>
     <script src="./FindFaces.js"></script>
     <script>
       if (window.mochaPhantomJS) {

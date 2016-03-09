@@ -1,9 +1,22 @@
 language: node_js
 node_js:
   - 0.12
+sudo: false
+addons:
+  apt:
+    packages:
+    - libpng-dev
+    - libatlas-base-dev
+    - libblas-dev
+    - libgsl0-dev
+    - libfftw3-dev
+    - libcairo2-dev
+    - libjpeg8-dev
+    - libpango1.0-dev
+    - libgif-dev
+    - build-essential
+    - g++
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq libpng-dev libatlas-base-dev libblas-dev libgsl0-dev libfftw3-dev libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
   - wget https://s3-us-west-2.amazonaws.com/cdn.thegrid.io/caliper/libvips/libccv-0.1.1.tar.gz
   - mkdir $HOME/libccv
   - echo $HOME/libccv
