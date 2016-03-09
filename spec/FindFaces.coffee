@@ -229,6 +229,7 @@ describe 'FindFaces component', ->
             img.onload = () ->
               canvas = new Canvas img.width, img.height
               canvas.getContext('2d').drawImage(img, 0, 0)
+              console.log 'canvas loaded'
               done()
             img.src = image
 
@@ -250,6 +251,7 @@ describe 'FindFaces component', ->
             results = data
             done()
           ins.beginGroup 'foo'
+          console.log 'sending canvas'
           ins.send canvas
 
         it 'should find no faces', ->
