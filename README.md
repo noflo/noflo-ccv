@@ -9,5 +9,5 @@ For now supporting:
 
 # Dependencies
 
-It expects [libccv](http://libccv.org) installed at `/usr/local/bin` and
-libraries like FFTW, GSL, ABLAS. See `.travis.yml` for Deb package names.
+It expects [libccv](http://libccv.org) installed at `/usr/local/bin`.
+See `.travis.yml` for Deb package names.
