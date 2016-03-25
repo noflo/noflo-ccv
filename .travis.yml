@@ -1,9 +1,12 @@
 language: node_js
 node_js:
   - 0.12
+  - 4
 sudo: false
 addons:
   apt:
+    sources:
+    - ubuntu-toolchain-r-test
     packages:
     - libpng-dev
     - libatlas-base-dev
@@ -13,7 +16,10 @@ addons:
     - libpango1.0-dev
     - libgif-dev
     - build-essential
-    - g++
+    - g++-4.8
+env:
+  matrix:
+    - CXX=g++-4.8
 before_install:
   - wget https://s3-us-west-2.amazonaws.com/cdn.thegrid.io/caliper/libvips/libccv-0.1.1.tar.gz
   - mkdir $HOME/libccv
