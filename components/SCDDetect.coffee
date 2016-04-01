@@ -79,6 +79,13 @@ exports.getComponent = ->
     else
       cascade = c.params.cascade
     writeCanvasTempFile canvas, (err, tmpFile) ->
+      if err
+        if err.code is 'ENOMEM'
+          console.log 'SCDDetect ERROR, sending empty faces', err
+          out.send []
+          do callback
+          return
+        return callback err
       return callback err if err
       runScdDetect tmpFile, cascade, (err, val) ->
         return callback err if err
