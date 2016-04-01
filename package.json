@@ -1,7 +1,7 @@
 {
   "name": "noflo-ccv",
   "description": "CCV face detection for NoFlo",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": {
     "name": "Liu Liu",
     "email": "liuliu.me"
