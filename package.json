@@ -31,7 +31,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "noflo": "~0.7.1",
+    "noflo": "0.x >= 0.5",
     "face-detect": "~0.0.2",
     "temporary": "0.0.8"
   },
