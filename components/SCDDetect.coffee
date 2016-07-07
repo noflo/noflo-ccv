@@ -70,10 +70,10 @@ exports.getComponent = ->
   noflo.helpers.WirePattern c,
     in: 'canvas'
     params: 'cascade'
-    out: 'out'
+    out: ['out', 'error']
     forwardGroups: true
     async: true
-  , (canvas, groups, out, callback) ->
+  , (canvas, groups, outPorts, callback) ->
     if not c.params.cascade
       cascade = path.join __dirname, '../cascades/face.sqlite3'
     else
@@ -82,14 +82,16 @@ exports.getComponent = ->
       if err
         if err.code is 'ENOMEM'
           console.log 'SCDDetect ERROR, sending empty faces', err
-          out.send []
+          outPorts.out.send []
           do callback
           return
-        return callback err
-      return callback err if err
-      runScdDetect tmpFile, cascade, (err, val) ->
-        return callback err if err
-        out.send val
+        outPorts.error.send err
         do callback
-
-  c
+        return
+      runScdDetect tmpFile, cascade, (err, val) ->
+        if err
+          outPorts.error.send err
+          do callback
+          return
+        outPorts.out.send val
+        do callback
