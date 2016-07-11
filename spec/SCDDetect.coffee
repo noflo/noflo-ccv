@@ -64,7 +64,6 @@ describe 'SCDDetect component', ->
           grps.push grp
         out.once "data", (data) ->
           results = data
-          console.log 'results', data
           done()
         error.on 'data', (data) ->
           done data
