@@ -1,8 +1,5 @@
 noflo = require 'noflo'
-temporary = require 'temporary'
-fs = require 'fs'
 path = require 'path'
-exec = require('child_process').exec
 utils = require '../utils'
 
 # @runtime noflo-nodejs
@@ -48,8 +45,9 @@ exports.getComponent = ->
         outPorts.error.send err
         do callback
         return
-      cmd = path.join __dirname, "../build/Release/scddetect"
-      utils.runCmd cmd, tmpFile, cascade, (err, val) ->
+      bin = path.join __dirname, "../build/Release/scddetect"
+      cmd = "#{bin} #{tmpFile.path} #{cascade}"
+      utils.runCmd cmd, tmpFile, (err, val) ->
         if err
           outPorts.error.send err
           do callback

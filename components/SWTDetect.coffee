@@ -1,44 +1,9 @@
 noflo = require 'noflo'
-temporary = require 'temporary'
-fs = require 'fs'
 path = require 'path'
-exec = require('child_process').exec
+utils = require '../utils'
 
 # @runtime noflo-nodejs
 # @name SWTDetect
-
-compute = (canvas, callback) ->
-  # Get canvas
-  ctx = canvas.getContext '2d'
-  imageData = ctx.getImageData 0, 0, canvas.width, canvas.height
-  data = imageData.data
-
-  tmpFile = new temporary.File
-  out = fs.createWriteStream tmpFile.path
-  stream = canvas.pngStream()
-  stream.on 'data', (chunk) ->
-    out.write(chunk)
-  stream.on 'end', () ->
-    try
-      # Delay it a bit to avoid premature stream ending
-      setTimeout () ->
-        onEnd tmpFile, callback
-      , 100
-    catch e
-      callback e
-      tmpFile.unlink()
-
-onEnd = (tmpFile, callback) ->
-  bin = path.join __dirname, '../build/Release/swtdetect'
-  exec "#{bin} #{tmpFile.path}", (err, stdout, stderr) ->
-    if err
-      callback err
-      tmpFile.unlink()
-      return
-    else
-      out = JSON.parse stdout
-      callback null, out
-      tmpFile.unlink()
 
 exports.getComponent = ->
   c = new noflo.Component
@@ -58,12 +23,21 @@ exports.getComponent = ->
 
   noflo.helpers.WirePattern c,
     in: 'canvas'
-    out: 'out'
+    out: ['out', 'error']
     forwardGroups: true
     async: true
-  , (payload, groups, out, callback) ->
-    compute payload, (err, val) ->
-      return callback err if err
-      out.send val
-      do callback
-  c
+  , (canvas, groups, outPorts, callback) ->
+    utils.writeCanvasTempFile canvas, (err, tmpFile) ->
+      if err
+        outPorts.error.send err
+        do callback
+        return
+      bin = path.join __dirname, "../build/Release/swtdetect"
+      cmd = "#{bin} #{tmpFile.path}"
+      utils.runCmd cmd, tmpFile, (err, val) ->
+        if err
+          outPorts.error.send err
+          do callback
+          return
+        outPorts.out.send val
+        do callback
