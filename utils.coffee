@@ -29,8 +29,8 @@ writeCanvasTempFile = (canvas, callback) ->
           tmpFile.unlink()
   rs.pipe ws
 
-runCmd = (cmd, tmpFile, cascade, callback) ->
-  exec "#{cmd} #{tmpFile.path} #{cascade}", (err, stdout, stderr) ->
+runCmd = (cmd, tmpFile, callback) ->
+  exec cmd, (err, stdout, stderr) ->
     if err
       callback err
       tmpFile.unlink()
