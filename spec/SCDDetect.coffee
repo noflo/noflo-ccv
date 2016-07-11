@@ -64,7 +64,10 @@ describe 'SCDDetect component', ->
           grps.push grp
         out.once "data", (data) ->
           results = data
+          console.log 'results', data
           done()
+        error.on 'data', (data) ->
+          done data
         ins.beginGroup 'foo'
         ins.send canvas
 
@@ -125,6 +128,8 @@ describe 'SCDDetect component', ->
           out.once "data", (data) ->
             results = data
             done()
+          error.on 'data', (data) ->
+            done data
           ins.beginGroup 'foo'
           ins.send canvas
 
