@@ -28,6 +28,14 @@ exports.getComponent = ->
     async: true
   , (canvas, groups, outPorts, callback) ->
     utils.writeCanvasTempFile canvas, (err, tmpFile) ->
+      if canvas?.width? and canvas?.width < 0
+        outPorts.error.send new Error "Image has negative value for width"
+        do callback
+        return
+      if canvas?.height? and canvas?.height < 0
+        outPorts.error.send new Error "Image has negative value for height"
+        do callback
+        return
       if err
         outPorts.error.send err
         do callback
