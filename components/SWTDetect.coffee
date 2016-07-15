@@ -3,50 +3,45 @@ path = require 'path'
 utils = require '../utils'
 
 # @runtime noflo-nodejs
-# @name SCDDetect
+# @name SWTDetect
 
 exports.getComponent = ->
   c = new noflo.Component
-  c.icon = 'smile-o'
-  c.description = 'SURF-Cascade Detection'
+  c.icon = 'font'
+  c.description = 'Stroke Width Transform text detector'
 
   c.inPorts.add 'canvas',
     datatype: 'object'
     description: 'Canvas of image to be detected'
-  c.inPorts.add 'cascade',
-    datatype: 'string'
-    description: 'The file that contains a SCD classifier cascade (sqlite3)'
 
   c.outPorts.add 'out',
     datatype: 'object'
-    description: 'Bounding boxes of detected faces'
+    description: 'Bounding boxes of detected text'
   c.outPorts.add 'error',
     datatype: 'object'
     required: false
 
   noflo.helpers.WirePattern c,
     in: 'canvas'
-    params: 'cascade'
     out: ['out', 'error']
     forwardGroups: true
     async: true
   , (canvas, groups, outPorts, callback) ->
-    if not c.params.cascade
-      cascade = path.join __dirname, '../cascades/face.sqlite3'
-    else
-      cascade = c.params.cascade
     utils.writeCanvasTempFile canvas, (err, tmpFile) ->
+      if canvas?.width? and canvas?.width < 0
+        outPorts.error.send new Error "Image has negative value for width"
+        do callback
+        return
+      if canvas?.height? and canvas?.height < 0
+        outPorts.error.send new Error "Image has negative value for height"
+        do callback
+        return
       if err
-        if err.code is 'ENOMEM'
-          console.log 'SCDDetect ERROR, sending empty faces', err
-          outPorts.out.send []
-          do callback
-          return
         outPorts.error.send err
         do callback
         return
-      bin = path.join __dirname, "../build/Release/scddetect"
-      cmd = "#{bin} #{tmpFile.path} #{cascade}"
+      bin = path.join __dirname, "../build/Release/swtdetect"
+      cmd = "#{bin} #{tmpFile.path}"
       utils.runCmd cmd, tmpFile, (err, val) ->
         if err
           outPorts.error.send err

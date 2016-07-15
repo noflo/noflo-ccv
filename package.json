@@ -55,7 +55,8 @@
     "components": {
       "CalcBounds": "components/CalcBounds.coffee",
       "FindFaces": "components/FindFaces-node.coffee",
-      "SCDDetect": "components/SCDDetect.coffee"
+      "SCDDetect": "components/SCDDetect.coffee",
+      "SWTDetect": "components/SWTDetect.coffee"
     }
   }
 }
