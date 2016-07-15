@@ -33,6 +33,8 @@ describe 'SWTDetect component', ->
     img = null
     beforeEach (done) ->
       fs.readFile __dirname+'/being-d4.jpg', (err, image) ->
+        unless image
+          return done()
         if err
           return done err
         img = new Image
@@ -61,7 +63,7 @@ describe 'SWTDetect component', ->
           done()
         ins.beginGroup 'foo'
         ins.send canvas
-        # ins.endGroup()
+        ins.endGroup()
 
       it 'should find text regions', ->
         chai.expect(results).to.be.an 'array'
