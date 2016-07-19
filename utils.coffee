@@ -2,6 +2,9 @@ temporary = require 'temporary'
 fs = require 'fs'
 exec = require('child_process').exec
 
+# Safe guard exec command to a max of 1min
+execTimeout = 60000
+
 writeCanvasTempFile = (canvas, callback) ->
   tmpFile = new temporary.File
 
@@ -30,15 +33,26 @@ writeCanvasTempFile = (canvas, callback) ->
   rs.pipe ws
 
 runCmd = (cmd, tmpFile, callback) ->
-  exec cmd, (err, stdout, stderr) ->
+  options =
+    timeout: execTimeout
+  exec cmd, options, (err, stdout, stderr) ->
     if err
-      callback err
+      if err.signal is 'SIGTERM'
+        callback new Error "Command #{cmd} timed out"
+      else
+        callback err
       tmpFile.unlink()
       return
     else
       out = JSON.parse stdout
       if out.length > 1
-        out.sort (a,b) -> return b.confidence-a.confidence
+        out.sort (a,b) ->
+          if b.confidence? and
+          a.confidence? and
+          typeof b.confidence is 'number' and
+          typeof a.confidence is 'number'
+            return b.confidence-a.confidence
+          return 0
       callback null, out
       tmpFile.unlink()
 
