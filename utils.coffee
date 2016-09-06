@@ -8,7 +8,8 @@ execTimeout = 60000
 writeCanvasTempFile = (canvas, callback) ->
   tmpFile = new temporary.File
 
-  rs = canvas.pngStream()
+  rs = canvas.jpegStream
+    quality: 100
   ws = fs.createWriteStream tmpFile.path
   rs.once 'error', (error) ->
     callback error
