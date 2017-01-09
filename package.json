@@ -36,7 +36,11 @@
     "temporary": "~0.0.8"
   },
   "devDependencies": {
+    "canvas": "^1.4.0",
     "chai": "^3.5.0",
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "^1.12.2",
+    "fbp-loader": "^0.1.1",
     "grunt": "^1.0.1",
     "grunt-coffeelint": "^0.0.16",
     "grunt-contrib-coffee": "^1.0.0",
@@ -47,7 +51,7 @@
     "grunt-node-gyp": "^3.0.0",
     "grunt-noflo-browser": "^1.0.1",
     "grunt-noflo-manifest": "^0.1.12",
-    "canvas": "^1.4.0",
+    "json-loader": "^0.5.4",
     "mocha": "^3.2.0"
   },
   "keywords": [],
