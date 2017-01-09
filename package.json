@@ -33,7 +33,7 @@
   "dependencies": {
     "noflo": "0.x >= 0.5",
     "face-detect": "~0.0.2",
-    "temporary": "0.0.8"
+    "temporary": "~0.0.8"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -41,13 +41,13 @@
     "grunt-coffeelint": "^0.0.16",
     "grunt-contrib-coffee": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
-    "grunt-contrib-watch": "~1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-mocha-phantomjs": "^4.0.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-node-gyp": "^3.0.0",
     "grunt-noflo-browser": "^1.0.1",
-    "grunt-noflo-manifest": "^0.1.11",
-    "canvas": "~1.4.0",
+    "grunt-noflo-manifest": "^0.1.12",
+    "canvas": "^1.4.0",
     "mocha": "^3.2.0"
   },
   "keywords": [],
