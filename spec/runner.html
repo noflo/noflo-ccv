@@ -14,19 +14,17 @@
     <div id="mocha"></div>
     <div id="fixtures"></div>
     <script src="../browser/noflo-ccv.js"></script>
-    <script src="http://chaijs.com/chai.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
     <script src="../node_modules/mocha/mocha.js"></script>
     <script>
-      window.initMochaPhantomJS();
+      if (window.initMochaPhantomJS) {
+        window.initMochaPhantomJS();
+      }
       mocha.setup('bdd');
     </script>
     <script src="./FindFaces.js"></script>
     <script>
-      if (window.mochaPhantomJS) {
-        mochaPhantomJS.run();
-      } else {
-        mocha.run();
-      }
+      mocha.run();
     </script>
   </body>
 </html>
