@@ -23,7 +23,7 @@
     "url": "git://github.com/noflo/noflo-ccv.git"
   },
   "engines": {
-    "node": "0.4.x",
+    "node": "0.4.x"
   },
   "license": "MIT",
   "scripts": {
