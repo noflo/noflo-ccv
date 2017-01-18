@@ -20,11 +20,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/forresto/noflo-ccv.git"
+    "url": "git://github.com/noflo/noflo-ccv.git"
   },
   "engines": {
-    "node": "0.12.x",
-    "npm": "2.10.x"
+    "node": "0.4.x"
   },
   "license": "MIT",
   "scripts": {
@@ -51,12 +50,14 @@
     "grunt-mocha-phantomjs": "^4.0.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-node-gyp": "^3.0.0",
-    "grunt-noflo-browser": "^1.0.1",
+    "grunt-noflo-browser": "^1.1.4",
     "grunt-noflo-manifest": "^0.1.12",
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0"
   },
-  "keywords": [],
+  "keywords": [
+    "noflo"
+  ],
   "noflo": {
     "components": {
       "CalcBounds": "components/CalcBounds.coffee",
