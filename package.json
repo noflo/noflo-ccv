@@ -20,11 +20,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/forresto/noflo-ccv.git"
+    "url": "git://github.com/noflo/noflo-ccv.git"
   },
   "engines": {
-    "node": "0.12.x",
-    "npm": "2.10.x"
+    "node": "0.4.x",
   },
   "license": "MIT",
   "scripts": {
