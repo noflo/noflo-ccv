@@ -55,7 +55,9 @@
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0"
   },
-  "keywords": [],
+  "keywords": [
+    "noflo"
+  ],
   "noflo": {
     "components": {
       "CalcBounds": "components/CalcBounds.coffee",
