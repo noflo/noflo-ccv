@@ -50,7 +50,7 @@
     "grunt-mocha-phantomjs": "^4.0.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-node-gyp": "^3.0.0",
-    "grunt-noflo-browser": "^1.1.4",
+    "grunt-noflo-browser": "^1.4.0",
     "grunt-noflo-manifest": "^0.1.12",
     "json-loader": "^0.5.4",
     "mocha": "^4.0.0"
