@@ -48,18 +48,9 @@
     "grunt-mocha-test": "^0.13.2",
     "grunt-node-gyp": "^3.0.0",
     "grunt-noflo-browser": "^1.5.0",
-    "grunt-noflo-manifest": "^0.1.12",
     "mocha": "^4.0.0"
   },
   "keywords": [
     "noflo"
-  ],
-  "noflo": {
-    "components": {
-      "CalcBounds": "components/CalcBounds.coffee",
-      "FindFaces": "components/FindFaces-node.coffee",
-      "SCDDetect": "components/SCDDetect.coffee",
-      "SWTDetect": "components/SWTDetect.coffee"
-    }
-  }
+  ]
 }
