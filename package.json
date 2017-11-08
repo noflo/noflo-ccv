@@ -46,7 +46,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-mocha-phantomjs": "^4.0.0",
     "grunt-mocha-test": "^0.13.2",
-    "grunt-node-gyp": "^3.0.0",
+    "grunt-node-gyp": "^4.0.0",
     "grunt-noflo-browser": "^1.5.0",
     "mocha": "^4.0.0"
   },
