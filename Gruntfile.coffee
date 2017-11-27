@@ -25,14 +25,6 @@ module.exports = ->
         files:
           'browser/noflo-ccv.js': ['package.json']
 
-    # JavaScript minification for the browser
-    uglify:
-      options:
-        report: 'min'
-      noflo:
-        files:
-          './browser/noflo-ccv.min.js': ['./browser/noflo-ccv.js']
-
     # Automated recompilation and testing when developing
     watch:
       files: ['spec/*.coffee', 'components/*.coffee']
@@ -69,7 +61,6 @@ module.exports = ->
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-contrib-coffee'
   @loadNpmTasks 'grunt-noflo-browser'
-  @loadNpmTasks 'grunt-contrib-uglify'
   @loadNpmTasks 'grunt-node-gyp'
 
   # Grunt plugins used for testing
@@ -84,16 +75,14 @@ module.exports = ->
     @task.run 'coffee'
     if target is 'all' or target is 'browser'
       @task.run 'noflo_browser'
-      @task.run 'uglify'
 
   @registerTask 'test', 'Build NoFlo and run automated tests', (target = 'all') =>
     @task.run 'coffeelint'
-    @task.run 'coffee'
+    @task.run "build:#{target}"
     if target is 'all' or target is 'nodejs'
       @task.run 'mochaTest'
     if target is 'all' or target is 'browser'
       @task.run 'connect'
-      @task.run 'noflo_browser'
       @task.run 'mocha_phantomjs'
 
   @registerTask 'default', ['test']
