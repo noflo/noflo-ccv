@@ -33,7 +33,7 @@
     "ccv": "^1.0.0",
     "face-detect": "~0.0.2",
     "noflo": "^1.0.0",
-    "temporary": "~0.0.8"
+    "temporary": "~1.0.0"
   },
   "devDependencies": {
     "canvas": "^1.6.2",
