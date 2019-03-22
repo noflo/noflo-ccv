@@ -38,7 +38,7 @@
   "devDependencies": {
     "canvas": "^1.6.2",
     "chai": "^4.0.0",
-    "grunt": "^1.0.1",
+    "grunt": "1.0.3",
     "grunt-coffeelint": "^0.0.16",
     "grunt-contrib-coffee": "^2.0.0",
     "grunt-contrib-connect": "^2.0.0",
