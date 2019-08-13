@@ -36,7 +36,7 @@
     "temporary": "~0.0.8"
   },
   "devDependencies": {
-    "canvas": "^1.6.2",
+    "canvas": "^2.6.0",
     "chai": "^4.0.0",
     "grunt": "^1.0.1",
     "grunt-coffeelint": "^0.0.16",
